@@ -7,7 +7,7 @@ param (
 )
 
 function Get-UtilsScript ($script_name) {
-    $url = "https://raw.githubusercontent.com/ecalder6/azure-gaming/master/$script_name"
+    $url = "https://raw.githubusercontent.com/andiradulescu/azure-gaming/master/$script_name"
     Write-Host "Downloading utils script from $url"
     [Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
 
@@ -33,8 +33,8 @@ if ($manual_install) {
 Add-DisconnectShortcut
 
 Install-Chocolatey
-Install-VPN
-Join-Network $network
+#Install-VPN
+#Join-Network $network
 Install-NSSM
 
 Install-NvidiaDriver $manual_install

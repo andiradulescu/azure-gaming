@@ -2,6 +2,13 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "VmName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name for the Virtual Machine."
+            },
+            "defaultValue": "CloudGaming"
+        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -55,7 +62,7 @@
             "metadata": {
                 "description": "Location of the setup script."
             },
-            "defaultValue": "https://raw.githubusercontent.com/ecalder6/azure-gaming/master"
+            "defaultValue": "https://raw.githubusercontent.com/andiradulescu/azure-gaming/master"
         },
         "windowsUpdate": {
             "type": "bool",
@@ -77,14 +84,14 @@
         }
     },
     "variables": {
-        "nicName": "CloudGamingNic",
+        "nicName": "[parameters('VmName')]Nic",
         "addressPrefix": "10.0.0.0/16",
         "subnetName": "Subnet",
         "subnetPrefix": "10.0.0.0/24",
         "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-        "vmName": "CloudGaming",
-        "virtualNetworkName": "CloudGamingVNET",
-        "publicIPAddressName": "CloudGamingsPublicIP",
+        "vmName": "[parameters('VmName')]",
+        "virtualNetworkName": "[parameters('VmName')]VNET",
+        "publicIPAddressName": "[parameters('VmName')]PublicIP",
         "dnsNameForPublicIP": "[concat('cgp', uniqueString(resourceGroup().id, deployment().name))]",
         "scriptFolder": ".",
         "scriptFileName": "setup.ps1",
@@ -194,15 +201,15 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "publisher": "MicrosoftWindowsServer",
-                        "offer": "WindowsServer",
-                        "sku": "2016-Datacenter",
+                        "publisher": "MicrosoftWindowsDesktop",
+                        "offer": "windows-10",
+                        "sku": "19h2-pro-g2",
                         "version": "latest"
                     },
                     "osDisk": {
                         "createOption": "FromImage",
                         "managedDisk": {
-                            "storageAccountType": "Standard_LRS"
+                            "storageAccountType": "StandardSSD_LRS"
                         }
                     }
                 },
