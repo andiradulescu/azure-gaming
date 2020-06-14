@@ -32,6 +32,16 @@
                 "description": "The type of the VM to deploy. Note that only NV-series support gaming."
             }
         },
+        "VmStorageType": {
+            "type": "string",
+            "allowedValues": [
+                "StandardSSD_LRS",
+                "Standard_LRS"
+            ],
+            "metadata": {
+                "description": "The type of the storage for the VM to deploy. \"StandardSSD_LRS\" for \"Standard SSD\", \"Standard_LRS\" for \"Standard HDD\"."
+            }
+        },
         "autoShutdownStatus": {
             "type": "string",
             "allowedValues": [
@@ -209,7 +219,7 @@
                     "osDisk": {
                         "createOption": "FromImage",
                         "managedDisk": {
-                            "storageAccountType": "StandardSSD_LRS"
+                            "storageAccountType": "[parameters('VmStorageType')]"
                         }
                     }
                 },
