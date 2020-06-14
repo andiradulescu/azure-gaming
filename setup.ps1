@@ -33,8 +33,10 @@ if ($manual_install) {
 Add-DisconnectShortcut
 
 Install-Chocolatey
-#Install-VPN
-#Join-Network $network
+if ($network) {
+    Install-VPN
+    Join-Network $network
+}
 Install-NSSM
 
 Install-NvidiaDriver $manual_install
