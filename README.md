@@ -5,7 +5,7 @@
 2. The VMs deployed in this guide do not support SSD. If you want SSD, use [NVv3 series](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu#nvv3-series--1). If you are feeling adventurous, you can try out the new [NVv4 series](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu#nvv4-series-preview--1) with [AMD MI25](https://www.amd.com/en/products/professional-graphics/instinct-mi25) and AMD EPYC 7V12(Rome). No idea if this works, but please let me know if it does :)
 
 ## About
-Effortlessly stream the latest games on Azure. This project automates the set-up process for cloud gaming on a Nvidia M60 GPU on Azure. 
+Effortlessly stream the latest games on Azure. This project automates the set-up process for cloud gaming on a Nvidia M60 GPU on Azure.
 The development of this project is heavily inspired by this [excellent guide](https://lg.io/2016/10/12/cloudy-gamer-playing-overwatch-on-azures-new-monster-gpu-instances.html).
 
 The automated setup first deploys an Azure NV6 virtual machine (VM) with a single Nvidia M60 GPU (1/2 of a M60 graphics card) and configures the Custom Script Extension to run the setup script. The setup script configures everything that's needed to run steam games on the VM, such as installing the Nvidia driver, connecting to ZeroTier VPN, and setting up auto login for Windows.
@@ -20,7 +20,7 @@ Your Azure VM and your local machine are connected through ZeroTier VPN. You can
 The bandwidth needed can vary drastically depending on your streaming host/client, game, and resolution. I recommend most people to limit their bandwidth to either 15 or 30 Mbits/sec. If you are streaming at higher than 1080P or just want to have the best possible experience, go with 50 Mbits/sec.
 
 ## Pricing
-To game on the cloud on Azure, you will have to pay for the virtual machine, outgoing data bandwidth from the VM, and managed disk (See [Q & A](#q--a) for managed disk). 
+To game on the cloud on Azure, you will have to pay for the virtual machine, outgoing data bandwidth from the VM, and managed disk (See [Q & A](#q--a) for managed disk).
 
 You can pick between 2 kinds of VM: standard and low priority. A low priority VM is around **60%** cheaper than a standard VM. The downside is that a low priority VM can be shutdown or removed at any time. See [Q & A](#q--a) for how to add back a low priority VM once it's removed.
 
@@ -49,12 +49,12 @@ Note down the network id.
 
 ### II. Automatically Deploy Your Azure VM
 #### Automated Standard
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fecalder6%2Fazure-gaming%2Fmaster%2FStandard.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fandiradulescu%2Fazure-gaming%2Fmaster%2FStandard.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
 #### Automated Low Priority
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fecalder6%2Fazure-gaming%2Fmaster%2FLowPri.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fandiradulescu%2Fazure-gaming%2Fmaster%2FLowPri.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
@@ -72,7 +72,7 @@ For standard VM, you could specify a time when the VM would automatically shut d
 
 **Note: your admin credentials will be stored in plain-text in the VM. See [Q & A](#q--a) for more.**
 
-After filling these in, check on I agree the terms and click on purchase. A VM with a M60 GPU will be automatically deployed and configured for you. Note that the setup process will take around 15 minutes (1 hour + if you choose to update Windows). 
+After filling these in, check on I agree the terms and click on purchase. A VM with a M60 GPU will be automatically deployed and configured for you. Note that the setup process will take around 15 minutes (1 hour + if you choose to update Windows).
 
 You can monitor the progress of the deployment using the notification button (bell icon) on the top right. You can also check the status under Virtual Machine -> CloudGaming -> Extensions -> the only entry in the list. If you see an error or failure, submit an issue on GitHub along with what's in detailed status.
 
@@ -115,7 +115,7 @@ You could manually deploy your VM through Azure portal, PowerShell, or Azure CLI
 1. Deploy a NV6 size VM through the azure portal(see [this guide](https://lg.io/2016/10/12/cloudy-gamer-playing-overwatch-on-azures-new-monster-gpu-instances.html) for instructions). For low priority VM, checkout [this documentation](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-low-priority) and [this reddit thread](https://www.reddit.com/r/cloudygamer/comments/8fu2d0/azure_pricing_update/).
 2. Remote desktop into your Azure VM instance.
 3. Launch PowerShell (click on the Windows key in the bottom-left corner, type "powershell", and click on the app PowerShell).
-3. Download https://github.com/ecalder6/azure-gaming/blob/master/setup.ps1. You could download this onto your local machine and paste it through remote desktop.
+3. Download https://github.com/andiradulescu/azure-gaming/blob/master/setup.ps1. You could download this onto your local machine and paste it through remote desktop.
 4. Navigate to the directory containing setup.ps1 in PowerShell and execute
 ```powershell
 powershell -ExecutionPolicy Unrestricted -File setup.ps1 -network {zero_tier_network_id} -admin_username {username_set_in_portal} -admin_password {password_set_in_portal} -manual_install
@@ -160,7 +160,7 @@ Contributions are welcome! Please submit an issue and a PR for your change.
 ## Q & A
 * What's the difference between a managed disk and a temporary drive?
 
-    A managed disk is a persisted virtual disk drive that costs a few dollars a month. A temporary drive (called temporary storage in the VM) is an actual disk drive that sits on the computer that hosts your VM. Temporary drive is free of charge and is much faster than a managed disk. However, data on temporary drive are not persisted and will be wiped when the VM is deallocated. 
+    A managed disk is a persisted virtual disk drive that costs a few dollars a month. A temporary drive (called temporary storage in the VM) is an actual disk drive that sits on the computer that hosts your VM. Temporary drive is free of charge and is much faster than a managed disk. However, data on temporary drive are not persisted and will be wiped when the VM is deallocated.
 
     There are 2 types of managed disk, standard and premium. Our VM type only supoorts standard disk, which has speeds similar to a typical hard drive.
 
@@ -174,7 +174,7 @@ Contributions are welcome! Please submit an issue and a PR for your change.
     1. While the script is executing, they will be stored as plain-text in memory.
     2. To facilitate auto-login for the VM, the credentials will be stored as plain-text in registry.
     3. NSSM will log these credentials in Windows logs.
-    
+
     You are safe if no malicious third-party can access the memory or disk on your VM. Now since the only way to remote desktop into your VM is through the admin account, the credentials should be safe. Still, you should NOT reuse the admin username and password anywhere else.
 
 * Do I have to pay for my VM once it's shutdown?
