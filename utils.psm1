@@ -58,8 +58,15 @@ function Edit-VisualEffectsRegistry {
 function Install-NvidiaDriver ($manual_install) {
     Write-Output "Installing Nvidia Driver"
     $driver_file = "nvidia-driver.exe"
-    $version = "391.03"
-    $url = "http://us.download.nvidia.com/Windows/Quadro_Certified/$version/$version-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe"
+    # Original version & url in script
+    # $version = "391.03"
+    # $url = "http://us.download.nvidia.com/Windows/Quadro_Certified/$version/$version-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe"
+    # Suggested version by Azure - see https://docs.microsoft.com/en-us/azure/virtual-machines/windows/n-series-driver-setup
+    # $version = "442.06"
+    # $url = "https://download.microsoft.com/download/b/8/f/b8f5ecec-b8f9-47de-b007-ac40adc88dc8/442.06_grid_win10_64bit_international_whql.exe"
+    # Last version from NVIDIA - see https://www.nvidia.com/Download/driverResults.aspx/158195/en-us
+    $version = "442.50"
+    $url = "http://us.download.nvidia.com/tesla/$version/$version-tesla-desktop-win10-64bit-international.exe"
 
     Write-Output "Downloading Nvidia M60 driver from URL $url"
     $webClient.DownloadFile($url, "$PSScriptRoot\$driver_file")
