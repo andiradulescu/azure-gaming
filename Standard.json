@@ -213,7 +213,7 @@
                     "imageReference": {
                         "publisher": "MicrosoftWindowsDesktop",
                         "offer": "windows-10",
-                        "sku": "19h2-pro-g2",
+                        "sku": "20h1-pro",
                         "version": "latest"
                     },
                     "osDisk": {
