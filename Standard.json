@@ -30,7 +30,8 @@
             ],
             "metadata": {
                 "description": "The type of the VM to deploy. Note that only NV-series support gaming."
-            }
+            },
+            "defaultValue": "Standard_NV6_Promo"
         },
         "VmStorageType": {
             "type": "string",
@@ -40,7 +41,8 @@
             ],
             "metadata": {
                 "description": "The type of storage for the Virtual Machine. \"StandardSSD_LRS\" for \"Standard SSD\", \"Standard_LRS\" for \"Standard HDD\"."
-            }
+            },
+            "defaultValue": "StandardSSD_LRS"
         },
         "VmIpType": {
             "type": "string",
@@ -50,7 +52,8 @@
             ],
             "metadata": {
                 "description": "The Public IP allocation method for the Virtual Machine."
-            }
+            },
+            "defaultValue": "Static"
         },
         "autoShutdownStatus": {
             "type": "string",
