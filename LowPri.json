@@ -24,13 +24,13 @@
         "VmType": {
             "type": "string",
             "allowedValues": [
-                "Standard_NV6_Promo",
                 "Standard_NV6",
                 "Standard_NV12s_v3"
             ],
             "metadata": {
                 "description": "The type of the VM to deploy. Note that only NV-series support gaming."
-            }
+            },
+            "defaultValue": "Standard_NV6"
         },
         "scriptLocation": {
             "type": "string",
