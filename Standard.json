@@ -85,7 +85,7 @@
             "metadata": {
                 "description": "Location of the setup script."
             },
-            "defaultValue": "https://raw.githubusercontent.com/andiradulescu/azure-gaming/master"
+            "defaultValue": "https://raw.githubusercontent.com/andiradulescu/azure-gaming/dev"
         },
         "windowsUpdate": {
             "type": "bool",
