@@ -39,7 +39,17 @@
                 "Standard_LRS"
             ],
             "metadata": {
-                "description": "The type of the storage for the VM to deploy. \"StandardSSD_LRS\" for \"Standard SSD\", \"Standard_LRS\" for \"Standard HDD\"."
+                "description": "The type of storage for the Virtual Machine. \"StandardSSD_LRS\" for \"Standard SSD\", \"Standard_LRS\" for \"Standard HDD\"."
+            }
+        },
+        "VmIpType": {
+            "type": "string",
+            "allowedValues": [
+                "Static",
+                "Dynamic"
+            ],
+            "metadata": {
+                "description": "The Public IP allocation method for the Virtual Machine."
             }
         },
         "autoShutdownStatus": {
@@ -114,7 +124,7 @@
             "apiVersion": "2017-08-01",
             "location": "[resourceGroup().location]",
             "properties": {
-                "publicIPAllocationMethod": "Dynamic"
+                "publicIPAllocationMethod": "[parameters('VmIpType')]"
             },
             "sku": {
                 "name": "Basic"
