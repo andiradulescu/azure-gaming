@@ -82,6 +82,7 @@ Click on the button above and fill out the form. You'll need to fill in:
 * Vm Storage Type: The type of storage for the VM. Standard_LRS for "Standard HDD", StandardSSD_LRS for "Standard SSD" or Premium_LRS for "Premium SSD".
 * Vm Ip Type: The Public IP allocation method for the VM. Check [here](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/) for Public IP Address pricing.
 * Spot VM: Set to true if you want to deploy a Spot VM. Note that it is not compatible with the *Promo* series VMs.
+* Platform : The OS of the VM to deploy. Note that Windows 10 VMs requires you yo own a volume license for it.
 * Script location: the location of the setup script. Use the default value.
 * Windows Update: whether to update windows, which takes around an hour. Recommended to leave as false.
 * Network ID: network ID of your zero tier VPN, or empty if you don't need ZeroTier.
