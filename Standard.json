@@ -275,20 +275,15 @@
             "resources": [
                 {
                     "name": "microsoft.nvidia-gpu-driver-windows",
-                    "apiVersion": "2015-01-01",
-                    "type": "Microsoft.Resources/deployments",
+                    "type": "extensions",
+                    "location": "[resourceGroup().location]",
+                    "apiVersion": "2015-06-15",
                     "properties": {
-                        "mode": "incremental",
-                        "templateLink": {
-                            "uri": "https://gallery.azure.com/artifact/20161101/microsoft.nvidia-gpu-driver-windows-arm.1.1.0/Artifacts/MainTemplate.json"
-                        },
-                        "parameters": {
-                            "vmName": {
-                                "value": "[variables('vmName')]"
-                            },
-                            "location": {
-                                "value": "[resourceGroup().location]"
-                            }
+                        "publisher": "Microsoft.HpcCompute",
+                        "type": "NvidiaGpuDriverWindows",
+                        "typeHandlerVersion": "1.3",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {
                         }
                     },
                     "dependsOn": [
